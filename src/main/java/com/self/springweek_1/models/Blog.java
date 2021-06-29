@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 public class Blog extends Timestamped {
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
@@ -30,8 +31,8 @@ public class Blog extends Timestamped {
 
     public Blog (BlogRequestDto requestDto){
         this.username = requestDto.getUsername();
-        this.username = requestDto.getTitle();
-        this.username = requestDto.getContents();
-
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
     }
+
 }

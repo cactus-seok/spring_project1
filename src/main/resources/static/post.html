@@ -24,6 +24,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="basic.js"></script>
     <style>
         * {
             font-family: 'Do Hyeon', sans-serif;
@@ -32,6 +33,7 @@
         .wrap {
             width: 100%;
         }
+
 
         .image {
             position: relative;
@@ -65,10 +67,6 @@
             margin: 0;
         }
 
-        #mainWrapper {
-            width: 800px;
-            margin: 0 auto; /*가운데 정렬*/
-        }
 
         #mainWrapper > ul > li:first-child {
             text-align: center;
@@ -77,10 +75,6 @@
             vertical-align: middle;
             line-height: 30px;
             margin-top: 20px;
-        }
-
-        #ulTable {
-            margin-top: 10px;
         }
 
 
@@ -92,7 +86,7 @@
 
         #ulTable > li > ul {
             clear: both;
-            padding: 0px ;
+            padding: 0px;
             position: relative;
             min-width: 40px;
         }
@@ -147,10 +141,6 @@
 
         }
 
-        .left {
-            text-align: left;
-        }
-
 
     </style>
     <script>
@@ -165,58 +155,41 @@
 <div class="wrap">
     <header>
         <div class="image">
-            <div class="content" onclick="location.href='index.html'"> My Blog</div>
+            <div class="content">My Blog</div>
         </div>
     </header>
+
 </div>
+<div class="container col-lg-6 " style="margin-top: 45px">
+    <h2>게시글 작성</h2>
+    <div class="card" style="padding: 20px; border-radius: 15px; margin: 20px auto;">
+        <div class="form-group">
+            <label>제목</label>
+            <div class="col-sm-12">
+                <input id="title" type="text" class="form-control" placeholder="제목을 입력해 주세요."/>
+            </div>
+        </div>
 
-<div id="mainWrapper">
+        <div class="form-group" style="margin-top: 10px">
+            <label>닉네임</label>
+            <div class="col-sm-12">
+                <input id="username" type="text" class="form-control" placeholder="이름을 입력해 주세요."/>
+            </div>
+        </div>
 
-    <ul>
-        <!-- 게시판 제목 -->
-        <li>나의 Post </li>
-        <span><button onclick="location.href='post.html' " class="btn btn-primary waves-effect waves-light">포스팅하기</button></span>
-        <!-- 게시판 목록  -->
-        <li>
-            <ul id ="ulTable" class="ulTable">
-                <li>
-                    <ul>
-                        <li>No</li>
-                        <li>제목</li>
-                        <li>작성일</li>
-                        <li>작성자</li>
-                    </ul>
-                </li>
-                <!-- 게시물이 출력될 영역 -->
-                <li class="post" id="postbox">
-                    <ul>
-                        <li class="id">1</li>
-                        <li class="left" class="title">제목제목제목제목1</li>
-                        <li class="c">2014.07.09</li>
-                        <li class="username">자바킹</li>
-                    </ul>
-                </li>
-
-        </li>
-
-<!--        &lt;!&ndash; 게시판 페이징 영역 &ndash;&gt;-->
-<!--        <li>-->
-<!--            <div id="divPaging">-->
-<!--                <div>◀</div>-->
-<!--                <div><b>1</b></div>-->
-<!--                <div>2</div>-->
-<!--                <div>3</div>-->
-<!--                <div>4</div>-->
-<!--                <div>5</div>-->
-<!--                <div>▶</div>-->
-<!--            </div>-->
-<!--        </li>-->
-
-
-
-    </ul>
+        <div class="form-group" style="margin-top: 10px">
+            <label>내용</label>
+            <div class="col-sm-12">
+             <textarea id="contents" class="form-control" style="height: 300px;" placeholder="내용을 입력해 주세요.">
+             </textarea>
+            </div>
+        </div>
+        <div class="btn_wrap text-center" style="margin-top: 10px">
+            <a href="/" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+            <button onclick="savePost()" class="btn btn-primary waves-effect waves-light">저장하기</button>
+        </div>
+    </div>
 </div>
-
 
 </body>
 </html>
