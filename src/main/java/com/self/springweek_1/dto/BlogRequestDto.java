@@ -1,4 +1,4 @@
-package com.self.springweek_1.models;
+package com.self.springweek_1.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

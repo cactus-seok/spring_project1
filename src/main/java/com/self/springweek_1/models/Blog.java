@@ -1,5 +1,6 @@
 package com.self.springweek_1.models;
 
+import com.self.springweek_1.dto.BlogRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

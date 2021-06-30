@@ -8,22 +8,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Bulma CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bulma CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <script src="basic.js"></script>
+    <script src="style.css"></script>
     <style>
         * {
             font-family: 'Do Hyeon', sans-serif;
@@ -53,103 +52,8 @@
         }
 
 
-        body {
-            line-height: 2em;
-            font-family: "맑은 고딕";
-        }
-
-        ul, li {
-            list-style: none;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        #mainWrapper {
-            width: 800px;
-            margin: 0 auto; /*가운데 정렬*/
-        }
-
-        #mainWrapper > ul > li:first-child {
-            text-align: center;
-            font-size: 14pt;
-            height: 40px;
-            vertical-align: middle;
-            line-height: 30px;
-            margin-top: 20px;
-        }
-
-        #ulTable {
-            margin-top: 10px;
-        }
 
 
-        #ulTable > li:first-child > ul > li {
-            background-color: #c9c9c9;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        #ulTable > li > ul {
-            clear: both;
-            padding: 0px ;
-            position: relative;
-            min-width: 40px;
-        }
-
-        #ulTable > li > ul > li {
-            float: left;
-            font-size: 10pt;
-            border-bottom: 1px solid silver;
-            vertical-align: baseline;
-        }
-
-        #ulTable > li > ul > li:first-child {
-            width: 10%;
-        }
-
-        /*No 열 크기*/
-        #ulTable > li > ul > li:first-child + li {
-            width: 45%;
-        }
-
-        /*제목 열 크기*/
-        #ulTable > li > ul > li:first-child + li + li {
-            width: 20%;
-        }
-
-        /*작성일 열 크기*/
-        #ulTable > li > ul > li:first-child + li + li + li {
-            width: 15%;
-        }
-
-        /*작성자 열 크기*/
-        #ulTable > li > ul > li:first-child + li + li + li + li {
-            width: 10%;
-        }
-
-        /*조회수 열 크기*/
-
-
-        #divPaging > div {
-            float: left;
-            width: 30px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-
-        #liSearchOption > div {
-            margin: 0 auto;
-            margin-top: 30px;
-            width: auto;
-            height: 100px;
-
-        }
-
-        .left {
-            text-align: left;
-        }
 
 
     </style>
@@ -169,54 +73,33 @@
         </div>
     </header>
 </div>
-
-<div id="mainWrapper">
-
-    <ul>
-        <!-- 게시판 제목 -->
-        <li>나의 Post </li>
-        <span><button onclick="location.href='post.html' " class="btn btn-primary waves-effect waves-light">포스팅하기</button></span>
-        <!-- 게시판 목록  -->
-        <li>
-            <ul id ="ulTable" class="ulTable">
-                <li>
-                    <ul>
-                        <li>No</li>
-                        <li>제목</li>
-                        <li>작성일</li>
-                        <li>작성자</li>
-                    </ul>
-                </li>
-                <!-- 게시물이 출력될 영역 -->
-                <li class="post" id="postbox">
-                    <ul>
-                        <li class="id">1</li>
-                        <li class="left" class="title">제목제목제목제목1</li>
-                        <li class="c">2014.07.09</li>
-                        <li class="username">자바킹</li>
-                    </ul>
-                </li>
-
-        </li>
-
-<!--        &lt;!&ndash; 게시판 페이징 영역 &ndash;&gt;-->
-<!--        <li>-->
-<!--            <div id="divPaging">-->
-<!--                <div>◀</div>-->
-<!--                <div><b>1</b></div>-->
-<!--                <div>2</div>-->
-<!--                <div>3</div>-->
-<!--                <div>4</div>-->
-<!--                <div>5</div>-->
-<!--                <div>▶</div>-->
-<!--            </div>-->
-<!--        </li>-->
-
-
-
-    </ul>
+<div class="d-flex justify-content-end mb-4">
+    <a class="btn btn-primary text-uppercase" href="post.html">포스팅하기</a>
 </div>
+<div class="container">
+    <div class="table-responsive clearfix">
+        <table class="table table-hover" id="blog-container">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
 
+            <tbody id="blog-list">
+
+            <!--            <tr>-->
+            <!--                <th>1</th>-->
+            <!--                <th>dd</th>-->
+            <!--                <th>asdf</th>-->
+            <!--                <th>20210630</th>-->
+            <!--            </tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

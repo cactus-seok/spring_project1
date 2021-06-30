@@ -8,10 +8,11 @@ function findAllPosts() {
         type: 'GET',
         url: '/post',
         success: function (response) {
+            console.log(response)
             for (let i = 0; i < response.length; i++) {
                 let post = response[i];
-                let tempHtml = getPosts(post);
-                $('#ulTable').append(tempHtml);
+                let tempHtml = addPosts(post)
+                $('#blog-list').append(tempHtml)
             }
         },
         error: function () {
@@ -20,34 +21,26 @@ function findAllPosts() {
     })
 }
 
+
+
 // 새로운 POST 메인 화면에 뿌림
-function getPosts(post) {
-    return `<li>
-                    <ul>
-                        <li>${post.id}</li>
-                        <li class="left" >${post.title}</li>
-                        <li>${post.createdAt}</li>
-                        <li>${post.username}</li>
-                    </ul>
-                </li>`
+function addPosts(post) {
+    return `<tr>
+                <th>${post.id}</th>
+                <td><a href="/detail.html?id=${post.id}">${post.title}</a>
+                </td>
+                <td>${post.username}</td>
+                <td class="date">${post.createdAt}</td>
+            </tr>`
 }
 
-
-
-function getPostDetail(id) {
-    window.location.href = 'post.html?id=' + id
-}
-
-// 포스트 저장
 function savePost() {
-    let title = $('#title').val()
-    let username = $('#username').val()
-    let contents = $('#contents').val()
 
-    let post = {
-        'title': title,
-        'username': username,
-        'contents': contents
+    post = {
+        'title': $('#title').val(),
+        'contents': $('#contents').val(),
+        'username': $('#username').val(),
+        'createdAt': $('#createdAt').val()
     }
 
     if (!title) {
@@ -66,6 +59,7 @@ function savePost() {
             contentType: "application/json",
             data: JSON.stringify(post),
             success: function (response) {
+                console.log(response)
                 alert('게시글 등록이 완료되었습니다.')
                 window.location.replace("/")
             },
@@ -74,4 +68,26 @@ function savePost() {
             }
         })
     }
+}
+
+function getPostDetail(id) {
+    window.location.href = 'post.html?id=' + id
+}
+
+let current_id = document.location.href.split("?id=")[1];
+
+// 게시물 조회
+function findOne(){
+    $.ajax({
+        type: 'GET',
+        url: `/api/posts/${current_id}`,
+        success: function(response){
+            $('#title').text(response.title);
+            $('#content').text(response.content);
+
+        },
+        error: function(e){
+            alert("게시글을 조회할 수 없습니다.");
+        }
+    });
 }
