@@ -21,7 +21,7 @@ public class Blog extends Timestamped {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
     public Blog(String username, String title, String contents){

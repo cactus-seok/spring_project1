@@ -80,7 +80,7 @@ let current_id = document.location.href.split("?id=")[1];
 function findOne(){
     $.ajax({
         type: 'GET',
-        url: `/api/posts/${current_id}`,
+        url: `/api/post/${current_id}`,
         success: function(response){
             $('#title').text(response.title);
             $('#content').text(response.content);

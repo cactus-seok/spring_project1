@@ -25,7 +25,6 @@ function getPostDetail(id) {
 }
 
 function getDetailHtml(post) {
-    console.log(post+"post")
     return `<div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text">제목</span>
@@ -40,11 +39,7 @@ function getDetailHtml(post) {
                 <span class="input-group-text">내용</span>
             </div>
             <div class="form-control" id="contents">
-
-
                 ${post.contents}
-
-
             </div>
         </div>
 
