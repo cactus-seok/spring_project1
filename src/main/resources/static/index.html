@@ -64,6 +64,18 @@
 </head>
 
 <body>
+<div class="header" style="position:relative;">
+    <div id="header-title-login-user">
+        <span th:text="${username}"></span> 님의
+    </div>
+    <div id="header-title-select-shop">
+        My Blog
+    </div>
+
+    <a id="logout-text" href="/user/logout">
+        로그아웃
+    </a>
+</div>
 <div class="wrap">
     <header>
         <div class="image">

@@ -1,4 +1,4 @@
-package com.self.springweek_1.models;
+package com.self.springweek_1.model;
 
 import com.self.springweek_1.dto.BlogRequestDto;
 import lombok.Getter;

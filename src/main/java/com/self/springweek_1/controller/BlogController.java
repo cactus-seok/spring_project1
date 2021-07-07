@@ -1,8 +1,7 @@
 package com.self.springweek_1.controller;
 
 import com.self.springweek_1.dto.BlogDetailRequestDto;
-import com.self.springweek_1.models.Blog;
-import com.self.springweek_1.models.BlogRepository;
+import com.self.springweek_1.Repository.BlogRepository;
 import com.self.springweek_1.dto.BlogRequestDto;
 //import com.self.springweek_1.service.BlogService;
 import com.self.springweek_1.dto.BlogSimpleResponseDto;

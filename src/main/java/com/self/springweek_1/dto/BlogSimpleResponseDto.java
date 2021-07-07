@@ -1,6 +1,6 @@
 package com.self.springweek_1.dto;
 
-import com.self.springweek_1.models.Blog;
+import com.self.springweek_1.model.Blog;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

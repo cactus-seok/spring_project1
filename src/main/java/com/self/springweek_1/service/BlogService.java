@@ -1,8 +1,8 @@
 package com.self.springweek_1.service;
 
 import com.self.springweek_1.dto.BlogDetailRequestDto;
-import com.self.springweek_1.models.Blog;
-import com.self.springweek_1.models.BlogRepository;
+import com.self.springweek_1.model.Blog;
+import com.self.springweek_1.Repository.BlogRepository;
 import com.self.springweek_1.dto.BlogRequestDto;
 import com.self.springweek_1.dto.BlogSimpleResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +42,5 @@ public class BlogService {
         return new BlogDetailRequestDto(entity);
     }
 
-//    @Transactional
-//    public Long update(Long id, BlogRequestDto requestDto){
-//        Blog blog = blogRepository.findById(id).orElseThrow(
-//                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-//        );
-//        blog.update(requestDto);
-//        return blog.getId();
-//    }
+
 }

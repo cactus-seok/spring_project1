@@ -1,4 +1,4 @@
-package com.self.springweek_1.models;
+package com.self.springweek_1.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
