@@ -8,6 +8,7 @@ import com.self.springweek_1.model.User;
 import com.self.springweek_1.security.UserDetailsImpl;
 import com.self.springweek_1.security.kakao.KakaoOAuth2;
 import com.self.springweek_1.security.kakao.KakaoUserInfo;
+import com.self.springweek_1.utils.SignupValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,41 +21,57 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final KakaoOAuth2 kakaoOAuth2;
     private final AuthenticationManager authenticationManager;
-    private static final String ADMIN_TOKEN = "960ace9755393660de1a958af7b88ef9";
+    private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 
 
-    @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       KakaoOAuth2 kakaoOAuth2, AuthenticationManager authenticationManager) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.kakaoOAuth2 = kakaoOAuth2;
-        this.authenticationManager = authenticationManager;
-    }
 
 
-    public void registerUser(SignupRequestDto requestDto) {
-        String username = requestDto.getUsername();
-        // 회원 ID 중복 확인
+    public void registerUser(SignupRequestDto signupRequestDto) {
+        //ID
+        String username = signupRequestDto.getUsername();
+        //정규식 검사
+        if(!SignupValidator.idValid(username)){
+            throw new IllegalArgumentException("idValid");
+        }
+        //중복검사
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
+            throw new IllegalArgumentException("duplicate");
         }
-        // 비밀번호 일치 확인
 
+        //PW
+        String password = signupRequestDto.getPassword();
+        String password_check = signupRequestDto.getPassword_check();
+        //정규식 검사
+        if(!SignupValidator.pwValid(username, password)){
+            throw new IllegalArgumentException("pwValid");
+        }
+        //비밀번호 재입력 일치 검사
+        if (!password.equals(password_check)) {
+            throw new IllegalArgumentException("notequal");
+        }
+        //모든조건 충족시 비밀번호 암호화
+        password = passwordEncoder.encode(signupRequestDto.getPassword());
 
-        // 패스워드 인코딩
-        String password = passwordEncoder.encode(requestDto.getPassword());
-        String rePassword = passwordEncoder.encode(requestDto.getRePassword());
-        String email = requestDto.getEmail();
+        //Email
+        String email = signupRequestDto.getEmail();
+        if (!SignupValidator.emailValid(email)){
+            throw new IllegalArgumentException("emailValid");
+        }
+        //중복검사
+        Optional<User> found2 = userRepository.findByEmail(email);
+        if (found2.isPresent()) {
+            throw new IllegalArgumentException("Emailduplicate");
+        }
 
-
-        User user = new User(username, password, rePassword, email);
+        // 모든 조건 통과 및 암호화된 사용자 계정정보를 DB에 저장
+        User user = new User(username, password, email);
         userRepository.save(user);
     }
 
@@ -87,6 +104,7 @@ public class UserService {
                 String password = kakaoId + ADMIN_TOKEN;
                 // 패스워드 인코딩
                 String encodedPassword = passwordEncoder.encode(password);
+
 
 
                 kakaoUser = new User(username, encodedPassword, email, kakaoId);
