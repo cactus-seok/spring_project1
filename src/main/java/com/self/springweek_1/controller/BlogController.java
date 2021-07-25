@@ -36,7 +36,6 @@ public class BlogController {
     //특정 게시글 조회
     @GetMapping("/{id}")
     public BlogDetailRequestDto getPost(@PathVariable Long id){
-        System.out.println(blogService.findById(id));
         return blogService.findById(id);
     }
 
